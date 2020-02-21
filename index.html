@@ -29,9 +29,9 @@
 		<meta name="keywords" content="aria2,aria2c,aria2 rpc,aria2 web ui,aria2 web gui,aria2 web界面,yaaw汉化" />
 		<meta name="description" content="Yet Another Aria2 Web Frontend" />
 
-		<link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
-		<link href="css/main.css" rel="stylesheet" />
+		<link href="./css/bootstrap.min.css" rel="stylesheet" />
+		<link href="./css/bootstrap-responsive.min.css" rel="stylesheet" />
+		<link href="./css/main.css" rel="stylesheet" />
 		<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -390,6 +390,7 @@
 				<td>{{#_v.bitfield_to_percent}}{{bitfield}}{{/_v.bitfield_to_percent}}%</td>
 				<td>{{#_v.format_size}}{{downloadSpeed}}{{/_v.format_size}}/s</td>
 				<td>{{#_v.format_size}}{{uploadSpeed}}{{/_v.format_size}}/s</td>
+				<td>{{country}}</td>
 			</tr>
 			{{/.}}
 		</script>
@@ -516,15 +517,16 @@
 			</form>
 		</script>
 
-		<script src="js/jquery-1.7.2.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.jsonrpc.min.js"></script>
-		<script src="js/jquery.Storage.min.js"></script>
-		<script src="js/jquery.base64.min.js"></script>
-		<script src="js/mustache.min.js"></script>
-		<script src="js/peerid.min.js"></script>
-		<script src="js/aria2.js"></script>
-		<script src="js/yaaw.js"></script>
+		<script src="./js/jquery-1.7.2.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/jquery.jsonrpc.min.js"></script>
+		<script src="./js/jquery.Storage.min.js"></script>
+		<script src="./js/jquery.base64.min.js"></script>
+		<script src="./js/geoip.js"></script>
+		<script src="./js/mustache.min.js"></script>
+		<script src="./js/peerid.min.js"></script>
+		<script src="./js/aria2.js"></script>
+		<script src="./js/yaaw.js"></script>
 	</body>
 </html>
 <!-- vim: set et sw=2 ts=2 sts=2 ff=unix fenc=utf8: -->
