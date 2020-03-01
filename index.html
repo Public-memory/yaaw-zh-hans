@@ -17,110 +17,116 @@
 	You may get a copy of the GNU Lesser General Public License
 	from http://www.gnu.org/licenses/lgpl.txt
 -->
-<html lang="zh-Hans" manifest="offline.appcache">
-	<head>
-		<meta charset="utf-8" />
-		<title>Aria2 Web 控制台</title>
-		<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width">
-		<meta name="author" content="Binux" />
-		<meta name="chinesizing" content="aa65535" />
-		<link href="favicon.ico" rel="shortcut icon" type="image/ico" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="keywords" content="aria2,aria2c,aria2 rpc,aria2 web ui,aria2 web gui,aria2 web界面,yaaw汉化" />
-		<meta name="description" content="Yet Another Aria2 Web Frontend" />
+<!-- <html lang="zh-Hans" manifest="offline.appcache"> -->
+<html lang="zh-Hans">
 
-		<link href="./css/bootstrap.min.css" rel="stylesheet" />
-		<link href="./css/bootstrap-responsive.min.css" rel="stylesheet" />
-		<link href="./css/main.css" rel="stylesheet" />
-		<!--[if lt IE 9]>
+</html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Aria2 Web 控制台</title>
+	<meta name="viewport"
+		content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width">
+	<meta name="author" content="Binux" />
+	<meta name="chinesizing" content="aa65535" />
+	<link href="favicon.ico" rel="shortcut icon" type="image/ico" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="keywords" content="aria2,aria2c,aria2 rpc,aria2 web ui,aria2 web gui,aria2 web界面,yaaw汉化" />
+	<meta name="description" content="Yet Another Aria2 Web Frontend" />
+
+	<link href="./css/bootstrap.min.css" rel="stylesheet" />
+	<link href="./css/bootstrap-responsive.min.css" rel="stylesheet" />
+	<link href="./css/main.css" rel="stylesheet" />
+	<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-	</head>
-	<body>
-		<div class="container">
-			<header class="main-head page-header">
-				<h1>Aria2 Web 控制台</h1>
-				<span id="offline-cached"></span>
-				<div id="global-info" class="pull-right">
-					<div id="global-version"></div>
-					<div id="global-speed"></div>
-				</div>
-			</header>
+</head>
 
-			<div class="clearfix hide" id="main-control">
-				<div id="main-alert" class="hide">
-					<div id="main-alert-inline" class="alert">
-						<a href="javascript:;" id="btnClearAlert" class="close">×</a>
-						<span class="alert-msg">加载中</span>
-					</div>
-				</div>
+<body>
+	<div class="container">
+		<header class="main-head page-header">
+			<h1>Aria2 Web 控制台</h1>
+			<span id="offline-cached"></span>
+			<div id="global-info" class="pull-right">
+				<div id="global-version"></div>
+				<div id="global-speed"></div>
+			</div>
+		</header>
 
-				<div class="pull-left">
-					<div class="btn-group" id="select-btn">
-						<button id="select-all-btn" class="btn" title="全选">
-							<i class="select-box"></i>
-						</button>
-						<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:;">
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="javascript:;" id="btnSelectActive">选中下载中的任务</a></li>
-							<li><a href="javascript:;" id="btnSelectWaiting">选中等待中的任务</a></li>
-							<li><a href="javascript:;" id="btnSelectPaused">选中已暂停的任务</a></li>
-							<li><a href="javascript:;" id="btnSelectStopped">选中已停止的任务</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="pull-left" id="not-selected-grp">
-					<div class="pull-left btn-group">
-						<a class="btn" id="add-task-btn" data-toggle="modal" href="#add-task-modal" title="添加任务">
-							<i class="icon-plus"></i> 添加
-						</a>
-					</div>
-					<div class="pull-left btn-group" id="do-all-btn">
-						<a href="javascript:;" id="btnStartAll" class="btn" id="unpause-all" title="开始所有任务">
-							<i class="icon-forward"></i>
-						</a>
-						<a href="javascript:;" id="btnPauseAll" class="btn" id="pause-all" title="暂停所有任务">
-							<i class="icon-stop"></i>
-						</a>
-						<a href="javascript:;" id="btnRemoveFinished" class="btn" id="pure-all" title="删除已经完成或出错的任务">
-							<i class="icon-trash"></i>
-						</a>
-					</div>
-				</div>
-
-				<div class="pull-left hide" id="selected-grp">
-					<div class="btn-group">
-						<a href="javascript:;" id="btnUnPause" class="btn" title="开始">
-							<i class="icon-play"></i>
-						</a>
-						<a href="javascript:;" id="btnPause" class="btn" title="暂停">
-							<i class="icon-pause"></i>
-						</a>
-						<a href="javascript:;" id="btnRemove" class="btn" title="删除">
-							<i class="icon-remove"></i>
-						</a>
-					</div>
-					<!--<button class="btn pull-left" id="info-btn" title="Task Info">-->
-						<!--<i class="icon-info-sign"></i> Info-->
-					<!--</button>-->
-				</div>
-
-				<div class="pull-right" id="other-grp">
-					<div class="btn-group">
-						<a href="javascript:;" class="btn" id="refresh-btn" title="刷新">
-							<i class="icon-refresh"></i> 刷新
-						</a>
-						<a class="btn" id="setting-btn" data-toggle="modal" href="#setting-modal" title="设置">
-							<i class="icon-wrench"></i>
-						</a>
-					</div>
+		<div class="clearfix hide" id="main-control">
+			<div id="main-alert" class="hide">
+				<div id="main-alert-inline" class="alert">
+					<a href="javascript:;" id="btnClearAlert" class="close">×</a>
+					<span class="alert-msg">加载中</span>
 				</div>
 			</div>
 
-			<section id="active-tasks">
+			<div class="pull-left">
+				<div class="btn-group" id="select-btn">
+					<button id="select-all-btn" class="btn" title="全选">
+						<i class="select-box"></i>
+					</button>
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:;" id="btnSelectActive">选中下载中的任务</a></li>
+						<li><a href="javascript:;" id="btnSelectWaiting">选中等待中的任务</a></li>
+						<li><a href="javascript:;" id="btnSelectPaused">选中已暂停的任务</a></li>
+						<li><a href="javascript:;" id="btnSelectStopped">选中已停止的任务</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="pull-left" id="not-selected-grp">
+				<div class="pull-left btn-group">
+					<a class="btn" id="add-task-btn" data-toggle="modal" href="#add-task-modal" title="添加任务">
+						<i class="icon-plus"></i> 添加
+					</a>
+				</div>
+				<div class="pull-left btn-group" id="do-all-btn">
+					<a href="javascript:;" id="btnStartAll" class="btn" id="unpause-all" title="开始所有任务">
+						<i class="icon-forward"></i>
+					</a>
+					<a href="javascript:;" id="btnPauseAll" class="btn" id="pause-all" title="暂停所有任务">
+						<i class="icon-stop"></i>
+					</a>
+					<a href="javascript:;" id="btnRemoveFinished" class="btn" id="pure-all" title="删除已经完成或出错的任务">
+						<i class="icon-trash"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="pull-left hide" id="selected-grp">
+				<div class="btn-group">
+					<a href="javascript:;" id="btnUnPause" class="btn" title="开始">
+						<i class="icon-play"></i>
+					</a>
+					<a href="javascript:;" id="btnPause" class="btn" title="暂停">
+						<i class="icon-pause"></i>
+					</a>
+					<a href="javascript:;" id="btnRemove" class="btn" title="删除">
+						<i class="icon-remove"></i>
+					</a>
+				</div>
+				<!--<button class="btn pull-left" id="info-btn" title="Task Info">-->
+				<!--<i class="icon-info-sign"></i> Info-->
+				<!--</button>-->
+			</div>
+
+			<div class="pull-right" id="other-grp">
+				<div class="btn-group">
+					<a href="javascript:;" class="btn" id="refresh-btn" title="刷新">
+						<i class="icon-refresh"></i> 刷新
+					</a>
+					<a class="btn" id="setting-btn" data-toggle="modal" href="#setting-modal" title="设置">
+						<i class="icon-wrench"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<section id="active-tasks">
 			<div class="section-header">
 				<i class="icon-chevron-down"></i><b>下载中的任务</b>
 			</div>
@@ -131,9 +137,9 @@
 					</div>
 				</li>
 			</ul>
-			</section>
+		</section>
 
-			<section id="other-tasks">
+		<section id="other-tasks">
 			<div class="section-header">
 				<i class="icon-chevron-down"></i><b>其他任务</b>
 			</div>
@@ -145,22 +151,22 @@
 				</li>
 			</ul>
 			<ul id="stopped-tasks-table" class="tasks-table"> </ul>
-			</section>
-		</div>
+		</section>
+	</div>
 
-		<ul id="task-contextmenu" class="dropdown-menu">
-			<li class="task-restart"><a href="javascript:;" id="menuRestart">重新开始</a></li>
-			<li class="task-start"><a href="javascript:;" id="menuStart">开始</a></li>
-			<li class="task-pause"><a href="javascript:;" id="menuPause">暂停</a></li>
-			<li><a href="javascript:;" id="menuRemove">删除</a></li>
-			<li class="task-move divider"></li>
-			<li class="task-move"><a href="javascript:;" id="menuMoveTop">移动到最上面</a></li>
-			<li class="task-move"><a href="javascript:;" id="menuMoveUp">上移</a></li>
-			<li class="task-move"><a href="javascript:;" id="menuMoveDown">下移</a></li>
-			<li class="task-move"><a href="javascript:;" id="menuMoveEnd">移动到最下面</a></li>
-		</ul>
+	<ul id="task-contextmenu" class="dropdown-menu">
+		<li class="task-restart"><a href="javascript:;" id="menuRestart">重新开始</a></li>
+		<li class="task-start"><a href="javascript:;" id="menuStart">开始</a></li>
+		<li class="task-pause"><a href="javascript:;" id="menuPause">暂停</a></li>
+		<li><a href="javascript:;" id="menuRemove">删除</a></li>
+		<li class="task-move divider"></li>
+		<li class="task-move"><a href="javascript:;" id="menuMoveTop">移动到最上面</a></li>
+		<li class="task-move"><a href="javascript:;" id="menuMoveUp">上移</a></li>
+		<li class="task-move"><a href="javascript:;" id="menuMoveDown">下移</a></li>
+		<li class="task-move"><a href="javascript:;" id="menuMoveEnd">移动到最下面</a></li>
+	</ul>
 
-		<section class="modal hide fade" id="add-task-modal">
+	<section class="modal hide fade" id="add-task-modal">
 		<div class="modal-header">
 			<button class="close" data-dismiss="modal">×</button>
 			<h3>添加任务</h3>
@@ -172,21 +178,25 @@
 			</div>
 			<form id="add-task-uri">
 				<div class="input-append">
-					<input type="text" name="uri" id="uri-input" class="input-clear" placeholder="输入HTTP, FTP 或 Magnet 链接" />
-					<span><a id="torrent-up-btn" class="btn">上传种子<input type="file" accept=".torrent" id="torrent-up-input" /></a></span>
+					<input type="text" name="uri" id="uri-input" class="input-clear"
+						placeholder="输入HTTP, FTP 或 Magnet 链接" />
+					<span><a id="torrent-up-btn" class="btn">上传种子<input type="file" accept=".torrent"
+								id="torrent-up-input" /></a></span>
 				</div>
-				<textarea id="uri-textarea" rows=5 class="input-clear hide" placeholder="输入HTTP, FTP 或 Magnet 链接, 每行一个"></textarea>
+				<textarea id="uri-textarea" rows=5 class="input-clear hide"
+					placeholder="输入HTTP, FTP 或 Magnet 链接, 每行一个"></textarea>
 			</form>
-			<div id="uri-more"><span class="or-and">&or;&or;&or;多个链接&or;&or;&or;</span><span class="or-and" style="display:none;">&and;&and;&and;单个链接&and;&and;&and;</span></div>
+			<div id="uri-more"><span class="or-and">&or;&or;&or;多个链接&or;&or;&or;</span><span class="or-and"
+					style="display:none;">&and;&and;&and;单个链接&and;&and;&and;</span></div>
 			<div id="add-task-option-wrap"></div>
 		</div>
 		<div class="modal-footer">
 			<a href="javascript:;" id="add-task-submit" class="btn btn-primary">添加</a>
 			<a href="javascript:;" id="add-task-clear" class="btn" data-dismiss="modal">取消</a>
 		</div>
-		</section>
+	</section>
 
-		<section class="modal hide fade" id="setting-modal">
+	<section class="modal hide fade" id="setting-modal">
 		<div class="modal-header">
 			<button class="close" data-dismiss="modal">×</button>
 			<h2>设置</h2>
@@ -198,7 +208,9 @@
 						<label class="control-label" for="rpc-path">JSON-RPC Path</label>
 						<div class="controls">
 							<div class="input-append btn-group rpc-path-wrap">
-								<input type="text" class="input-xlarge" id="rpc-path"><a class="add-on btn dropdown-toggle" href="javascript:;" disabled><b class="caret"></b></a>
+								<input type="text" class="input-xlarge" id="rpc-path"><a
+									class="add-on btn dropdown-toggle" href="javascript:;" disabled><b
+										class="caret"></b></a>
 							</div>
 						</div>
 					</div>
@@ -242,20 +254,21 @@
 			<div id="copyright">
 				作者 <a href="https://github.com/binux/yaaw" target="_blank">Binux</a>
 				&nbsp;/&nbsp; 汉化 <a href="https://github.com/aa65535/yaaw-zh-hans" target="_blank">aa65535</a>
+				&nbsp;/&nbsp; GeoIp接口 <a href="https://github.com/public-memory/yaaw-zh-hans" target="_blank">swkj</a>
 				&nbsp;/&nbsp; <a href="usage.html" target="_blank">使用说明</a>
 			</div>
 			<a href="javascript:;" id="saveSettings" class="btn btn-success">保存</a>
 			<a href="javascript:;" class="btn" data-dismiss="modal">取消</a>
 		</div>
-		</section>
+	</section>
 
-		<script id="global-speed-tpl" type="text/mustache-template">
+	<script id="global-speed-tpl" type="text/mustache-template">
 			<i class="icon-download"></i> <span>{{#_v.format_size}}{{downloadSpeed}}{{/_v.format_size}}</span>/s
 				/
 			<i class="icon-upload"></i>  <span>{{#_v.format_size}}{{uploadSpeed}}{{/_v.format_size}}</span>/s
 		</script>
 
-		<script id="active-task-tpl" type="text/mustache-template">
+	<script id="active-task-tpl" type="text/mustache-template">
 			{{#tasks}}
 			<li class="task" id="task-gid-{{gid}}" data-status="{{status}}" data-gid="{{gid}}">
 				<div class="left-area">
@@ -295,7 +308,7 @@
 			{{/tasks}}
 		</script>
 
-		<script id="other-task-tpl" type="text/mustache-template">
+	<script id="other-task-tpl" type="text/mustache-template">
 			{{#tasks}}
 			<li class="task" id="task-gid-{{gid}}" data-status="{{status}}" data-gid="{{gid}}" data-infohash="{{infoHash}}">
 				<div class="left-area">
@@ -322,7 +335,7 @@
 			{{/tasks}}
 		</script>
 
-		<script id="info-box-tpl" type="text/mustache-template">
+	<script id="info-box-tpl" type="text/mustache-template">
 			<div class="info-box" data-gid="{{gid}}">
 				<div class="tabbable tabs-left">
 					<ul class="nav nav-tabs">
@@ -346,7 +359,7 @@
 			</div>
 		</script>
 
-		<script id="ib-status-tpl" type="text/mustache-template">
+	<script id="ib-status-tpl" type="text/mustache-template">
 			<ul>
 				{{#uris}}<li><strong>下载链接: </strong><a target=_blank href="{{.}}">{{.}}</a>{{/uris}}
 				{{#infoHash}}<li><strong>磁力链接: </strong><a target=_blank href="magnet:?xt=urn:btih:{{infoHash}}">magnet:?xt=urn:btih:{{infoHash}}</a></li>{{/infoHash}}
@@ -361,7 +374,7 @@
 			</ul>
 		</script>
 
-		<script id="file-tpl" type="text/mustache-template">
+	<script id="file-tpl" type="text/mustache-template">
 			<li>
 				<i class="select-box{{#selected}} icon-ok{{/selected}}" data-index="{{index}}"></i>
 				<span class="ib-file-title">{{relative_title}}</span>
@@ -369,7 +382,7 @@
 			</li>
 		</script>
 
-		<script id="ib-options-tpl" type="text/mustache-template">
+	<script id="ib-options-tpl" type="text/mustache-template">
 			<form id="ib-options-form" class="form-horizontal" onsubmit="false">
 				<ul>
 					<li><span>下载限速:</span><input name="max-download-limit" class="active-allowed" value="{{max-download-limit}}" /></li>
@@ -382,7 +395,7 @@
 			</form>
 		</script>
 
-		<script id="ib-peers-tpl" type="text/mustache-template">
+	<script id="ib-peers-tpl" type="text/mustache-template">
 			{{#.}}
 			<tr>
 				<td>{{ip}}:{{port}}</td>
@@ -395,7 +408,7 @@
 			{{/.}}
 		</script>
 
-		<script id="other-task-empty" type="text/mustache-template">
+	<script id="other-task-empty" type="text/mustache-template">
 			<li>
 				<div class="empty-tasks">
 					<strong>没有任务</strong>
@@ -403,7 +416,7 @@
 			</li>
 		</script>
 
-		<script id="add-task-option-tpl" type="text/mustache-template">
+	<script id="add-task-option-tpl" type="text/mustache-template">
 			<hr />
 			<form id="add-task-option" class="form-horizontal" onsubmit="$('#add-task-uri').submit();return false">
 				<input type="submit" style="position:fixed;top:0;visibility:hidden"/>
@@ -473,7 +486,7 @@
 			</form>
 		</script>
 
-		<script id="aria2-global-setting-tpl" type="text/mustache-template">
+	<script id="aria2-global-setting-tpl" type="text/mustache-template">
 			<hr />
 			<form id="aria2-gs-form" class="form-horizontal" onsubmit="false">
 				<div class="control-group half">
@@ -517,16 +530,19 @@
 			</form>
 		</script>
 
-		<script src="./js/jquery-1.7.2.min.js"></script>
-		<script src="./js/bootstrap.min.js"></script>
-		<script src="./js/jquery.jsonrpc.min.js"></script>
-		<script src="./js/jquery.Storage.min.js"></script>
-		<script src="./js/jquery.base64.min.js"></script>
-		<script src="./js/geoip.js"></script>
-		<script src="./js/mustache.min.js"></script>
-		<script src="./js/peerid.min.js"></script>
-		<script src="./js/aria2.js"></script>
-		<script src="./js/yaaw.js"></script>
-	</body>
+	<script src="./js/jquery-1.7.2.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/jquery.jsonrpc.min.js"></script>
+	<script src="./js/jquery.Storage.min.js"></script>
+	<script src="./js/jquery.base64.min.js"></script>
+	<script src="./js/mustache.min.js"></script>
+	<script src="./js/peerid.min.js"></script>
+	<script src="./js/aria2.js"></script>
+	<script src="./js/yaaw.js"></script>
+	<script src="./js/ipaddr.min.js"></script>
+	<script src="./js/ipdb.js"></script>
+	<script src="./js/geoip.js"></script>
+</body>
+
 </html>
 <!-- vim: set et sw=2 ts=2 sts=2 ff=unix fenc=utf8: -->

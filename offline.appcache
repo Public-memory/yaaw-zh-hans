@@ -19,3 +19,4 @@ js/peerid.min.js
 js/aria2.js
 js/yaaw.js
 js/geoip.js
+js/ipaddr.min.js
