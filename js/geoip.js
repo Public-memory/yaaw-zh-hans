@@ -21,7 +21,7 @@ var LocadIPdb = self.setInterval("GetIPDB()", 5000);
 var countInterval = 0;
 var IPdbBlob;
 
-function GetIPDB() {
+var GetIPDB=function () {//立即执行
     console.log(countInterval++);
     if (IPdbBlob == null) {//判断IpdbBlob 是否存在；
         var IPdbURL = localStorage.getItem("ipip.ipdb");
@@ -30,6 +30,7 @@ function GetIPDB() {
             var xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
             xhr.responseType = "blob";
+            // xhr.setRequestHeader();
             xhr.onload = function () {
                 if (this.status == 200) {
                     IPdbBlob = this.response;
@@ -76,21 +77,6 @@ function getLocation(ip) {
     try {
         if (city == null) {
             return "Null";
-            // if (IPdbArrayBuffer != null) {
-            //     city = new City(new Uint8Array(IPdbArrayBuffer));
-            // } else {
-            //     if (IPdbBlob == null) {
-            //         return "Null";
-            //     } else {
-            //         var a = new FileReader();
-            //         a.onloadend = function (e) {
-            //             IPdbArrayBuffer = e.target.result;
-            //             console.log("IpdbArrayBuffer load success");
-            //             city = new City(new Uint8Array(IPdbArrayBuffer));
-            //         };
-            //         a.readAsArrayBuffer(IPdbBlob);
-            //     }
-            // }
         } else {
             var ipinfo = city.findInfo(ip, "CN");
             return ipinfo.countryName + "-" + ipinfo.regionName + "-" + ipinfo.cityName;
