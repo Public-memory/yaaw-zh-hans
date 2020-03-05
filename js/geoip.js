@@ -20,29 +20,32 @@ function dataURLtoBlob(dataurl) {
 var LocadIPdb = self.setInterval("GetIPDB()", 5000);
 var countInterval = 0;
 var IPdbBlob;
-
-var GetIPDB=function () {//立即执行
+var ajaxProcessing = false;
+var GetIPDB = function () {//立即执行
     console.log(countInterval++);
     if (IPdbBlob == null) {//判断IpdbBlob 是否存在；
         var IPdbURL = localStorage.getItem("ipip.ipdb");
         if (IPdbURL == null) {//本地不存在，则向网络请求
+            if (ajaxProcessing) { return; }
             var url = "./data/ipip.ipdb";
             var xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
             xhr.responseType = "blob";
-            // xhr.setRequestHeader();
-            xhr.onload = function () {
+            xhr.onloadend = function () {
                 if (this.status == 200) {
                     IPdbBlob = this.response;
                     window.clearInterval(LocadIPdb);//关闭定时器；
                     // localStorage.setItem("ipip.ipdb")
                     setLocalStorage(IPdbBlob);
                     iniGeo();
+                    ajaxProcessing = false
                 } else {
                     console.log("error");
+                    ajaxProcessing = false;
                 }
-            }
+            };
             xhr.send();
+            ajaxProcessing = true;
         } else {//本地存在，并取出IPdbBlob;闭定时器；
             IPdbBlob = dataURLtoBlob(IPdbURL);
             window.clearInterval(LocadIPdb);
