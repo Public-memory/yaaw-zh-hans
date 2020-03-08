@@ -53,6 +53,7 @@ var GetIPDB = function () {//立即执行
         }
     } else {//存在IpdbBlob 则关闭定时器；
         window.clearInterval(LocadIPdb);
+        iniGeo();
     }
 }
 
